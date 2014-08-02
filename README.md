@@ -27,6 +27,6 @@ After Install
 
 Sources
 =======
-OSX stuff - https://github.com/mathiasbynens/dotfiles
-Fish stuff - https://github.com/bpinto/oh-my-fish
-Font stuff - https://github.com/Lokaltog/powerline-fonts
+- OSX stuff - https://github.com/mathiasbynens/dotfiles
+- Fish stuff - https://github.com/bpinto/oh-my-fish
+- Font stuff - https://github.com/Lokaltog/powerline-fonts
