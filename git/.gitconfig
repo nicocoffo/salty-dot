@@ -1,0 +1,7 @@
+[user]
+	name = Nicholas Coughlin
+	email = nicocoffo@gmail.com
+[core]
+	editor = emacs
+[credential]
+	helper = osxkeychain

@@ -1,0 +1,31 @@
+# Emacs client
+alias emc "/usr/local/bin/emacsclient -t"
+
+# Better ls
+alias l "ls -AFhl"
+
+# Remove to bin
+function rm
+  trash $argv
+end
+
+# Update os + brew + salty dot
+function update
+  sudo softwareupdate -i -a
+  brew update
+  brew upgrade 
+  ~/.salty-dot/install.sh
+  brew cleanup
+end
+
+# Remove all .DS_Store
+function dieds
+  find . -type f -name '*.DS_Store' -ls -delete
+end
+
+# To deal with these stupid osx confs
+alias plistbuddy "/usr/libexec/PlistBuddy"
+
+# IP Address + Local IP Address
+alias ip "dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip "ipconfig getifaddr en0"

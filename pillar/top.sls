@@ -1,0 +1,4 @@
+base:
+  '*':
+    - username
+    - packages
