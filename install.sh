@@ -25,8 +25,11 @@ fi
 SALTY=$HOME/.salty-dot
 if [ -a $HOME/.salty-dot/top.sls ]
 then
-  cd $SALTY
-  git pull
+  cd $SALTY  
+  if ! git status --porcelain | grep -v '??' >/dev/null
+  then
+    git pull
+  fi
 else
   git clone https://github.com/nicocoffo/salty-dot.git $SALTY
 fi
