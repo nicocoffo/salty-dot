@@ -5,3 +5,5 @@
 	editor = emacs
 [credential]
 	helper = osxkeychain
+[push]
+	default = simple

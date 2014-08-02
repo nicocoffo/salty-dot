@@ -21,33 +21,16 @@ then
   brew install saltstack
 fi
 
-
-### Setup masterless salt
-if [ -a /etc/salt/minion ]
-then
-  sudo mv /etc/salt/minion /etc/salt/minion.bak
-else
-  sudo mkdir /etc/salt
-fi  
-echo -e "file_client: local\nfile_roots:\n  base:\n    - $HOME/.salty-dot\npillar_roots:\n  base:\n    - $HOME/.salty-dot/pillar" | sudo tee -a /etc/salt/minion >/dev/null
-
-
 ### Clone + run salt configs
+SALTY=$HOME/.salty-dot
 if [ -a $HOME/.salty-dot/top.sls ]
 then
-  cd $HOME/.salty-dot
+  cd $SALTY
   git pull
 else
-  git clone https://github.com/nicocoffo/salty-dot.git $HOME/.salty-dot
+  git clone https://github.com/nicocoffo/salty-dot.git $SALTY
 fi
-sudo salt-call --local state.highstate
-
+sudo salt-call --local --file-root $SALTY --pillar-root $SALTY/pillar state.highstate
 
 ### Clean up
-if [ -a /etc/salt/minion.bak ]
-then 
-  sudo mv /etc/salt/minion.bak /etc/salt/minion
-else
-  sudo rm /etc/salt/minion
-fi
 brew cleanup

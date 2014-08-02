@@ -1,6 +1,5 @@
 /Users/{{ pillar['username'] }}/.gitconfig:
-  file.managed:
-    - source: salt://git/.gitconfig
+  file.symlink:
+    - target: {{ opts['file_roots']['base'][0] }}/git/.gitconfig
     - user: {{ pillar['username'] }}
     - group: staff
-    - mode: 644
