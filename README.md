@@ -13,11 +13,10 @@ This repo will be cloned into ~/.salty-dot and salt will do its thing. The insta
 
 TODO
 ----
-- Actaully test this on a fresh machine
+- Actually test this on a fresh machine
 - Add emacs conf
 - Buy + Add alfred conf
 - Add tmux conf
-- Add git commands (gca, gp, ...)
 - Fix up OSX changes (three finger drag, dock)
 - Add some documentation for new functions
 - Private stuff from google drive? Google auth?
