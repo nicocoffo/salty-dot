@@ -21,11 +21,3 @@ tap-brew-cask:
     - env:
       - HOMEBREW_CASK_OPTS: --appdir=/Applications 
 {% endfor %}
-
-alfred-link:
-  cmd.run:
-    - name: 'brew cask alfred link'
-    - unless: 'brew cask alfred status | grep happily'
-    - user: {{ pillar['username'] }}
-    - require:
-      - cmd: alfred

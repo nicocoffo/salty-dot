@@ -1,6 +1,11 @@
 # Emacs client
 alias emc "/usr/local/bin/emacsclient -t"
 
+# Emacs daemon
+alias emcs "/usr/local/bin/emacs --daemon"
+alias emcd "/usr/local/bin/emacsclient --eval '(kill-emacs)'"
+alias emcr "/usr/local/bin/emacsclient --eval '(kill-emacs)'; /usr/local/bin/emacs --daemon"
+
 # Better ls
 alias l "ls -AFhl"
 
@@ -13,7 +18,7 @@ end
 function update
   sudo softwareupdate -i -a
   brew update
-  brew upgrade 
+  brew upgrade
   ~/.salty-dot/install.sh
   brew cleanup
 end

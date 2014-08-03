@@ -4,7 +4,6 @@ cask:
   - vlc
   - spectacle
   - pupil
-  - alfred
 
 brew:
   - fish:

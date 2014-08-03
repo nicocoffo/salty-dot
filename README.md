@@ -13,20 +13,19 @@ This repo will be cloned into ~/.salty-dot and salt will do its thing. The insta
 
 TODO
 ----
-- Actually test this on a fresh machine
-- Add emacs conf
-- Buy + Add alfred conf
+- Use user.home in pillar
+- Use os in pillar
+- Setup emacs for c
 - Add tmux conf
+- Actually test this on a fresh machine
 - Fix up OSX changes (three finger drag, dock)
 - Add some documentation for new functions
-- Private stuff from google drive? Google auth?
-
-After Install
--------------
-- Run pupil + apply license
+- Calls to google drive to get licenses + private thingys
+  - Open pupil license
 
 Sources
 -------
 - OSX stuff - https://github.com/mathiasbynens/dotfiles
 - Fish stuff - https://github.com/bpinto/oh-my-fish
 - Font stuff - https://github.com/Lokaltog/powerline-fonts
+- Emacs stuff - https://github.com/Errorific/dotfiles

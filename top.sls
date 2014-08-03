@@ -2,9 +2,10 @@ base:
   '*':
     - fish
     - brew
-    - cask
+    - brew-cask
     - osx
     - fonts
     - iterm2
     - dotfiles
     - git
+    - emacs

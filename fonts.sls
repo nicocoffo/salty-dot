@@ -15,4 +15,4 @@ copy-fonts:
     - require_in:
       - cmd: iterm2
     - require:
-      - git: pull-fonts 
+      - git: pull-fonts
