@@ -15,7 +15,7 @@ TODO
 ----
 - Use user.home in pillar
 - Use os in pillar
-- Setup emacs for c
+- Clean up emacs confs
 - Add tmux conf
 - Actually test this on a fresh machine
 - Fix up OSX changes (three finger drag, dock)
