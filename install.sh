@@ -25,7 +25,7 @@ fi
 SALTY=$HOME/.salty-dot
 if [ -a $HOME/.salty-dot/top.sls ]
 then
-  cd $SALTY  
+  cd $SALTY
   if ! git status --porcelain | grep -v '??' >/dev/null
   then
     git pull

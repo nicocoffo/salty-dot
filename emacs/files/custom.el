@@ -1,11 +1,3 @@
-(setq-default c-basic-offset 2)
-(setq-default c-default-style "linux")
-(add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
-
-(add-to-list 'load-path "~/.emacs.d/vendor/powerline")
-(require 'powerline)
-(powerline-evil-theme)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

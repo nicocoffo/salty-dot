@@ -6,18 +6,18 @@ brew-cask:
 tap-brew-cask:
   cmd.wait:
     - name: 'brew tap caskroom/versions'
-    - user: {{ pillar['username'] }}
+    - user: {{ salt['pillar.get']('user:name') }}
     - watch:
       - pkg: brew-cask
 
-{% for app in pillar['cask'] %}
+{% for app in salt['pillar.get']('cask') %}
 {{ app }}:
   cmd.run:
     - name: brew cask install {{ app }}  2> /dev/null
     - unless: brew cask list | grep {{ app }}
-    - user: {{ pillar['username'] }}
+    - user: {{ salt['pillar.get']('user:name') }}
     - require:
       - cmd: tap-brew-cask
     - env:
-      - HOMEBREW_CASK_OPTS: --appdir=/Applications 
+      - HOMEBREW_CASK_OPTS: --appdir=/Applications
 {% endfor %}

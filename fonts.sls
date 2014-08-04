@@ -1,16 +1,16 @@
 pull-fonts:
   git.latest:
     - name: https://github.com/Lokaltog/powerline-fonts.git
-    - target: /Users/{{ pillar['username'] }}/.salty-dot/.local/fonts
-    - unless: ls /Users/{{ pillar['username'] }}/Library/Fonts | grep 'Sauce Code Powerline Regular.otf'
-    - user: {{ pillar['username'] }}
+    - target: {{ salt['pillar.get']('user:path') }}/.salty-dot/.local/fonts
+    - unless: ls {{ salt['pillar.get']('user:path') }}/Library/Fonts | grep 'Sauce Code Powerline Regular.otf'
+    - user: {{ salt['pillar.get']('user:name') }}
 
 copy-fonts:
   file.recurse:
-    - name: /Users/{{ pillar['username'] }}/Library/Fonts
+    - name: {{ salt['pillar.get']('user:path') }}/Library/Fonts
     - source: salt://.local/fonts/SourceCodePro
     - include_pat: '*.otf'
-    - user: {{ pillar['username'] }}
+    - user: {{ salt['pillar.get']('user:name') }}
     - group: staff
     - require_in:
       - cmd: iterm2

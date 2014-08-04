@@ -7,7 +7,7 @@ fish-shells:
 
 fish-user:
   user.present:
-    - name: {{ pillar['username'] }}
+    - name: {{ salt['pillar.get']('user:name') }}
     - shell: /usr/local/bin/fish
     - require:
       - cmd: fish-shells
@@ -15,18 +15,18 @@ fish-user:
 oh-my-fish:
   cmd.run:
     - name: 'curl -L https://github.com/bpinto/oh-my-fish/raw/master/tools/install.fish | fish'
-    - unless: ls /Users/{{ pillar['username'] }}/.oh-my-fish/oh-my-fish.fish
-    - user: {{ pillar['username'] }}
+    - unless: ls {{ salt['pillar.get']('user:path') }}/.oh-my-fish/oh-my-fish.fish
+    - user: {{ salt['pillar.get']('user:name') }}
     - require:
       - pkg: fish
 
-/Users/{{ pillar['username'] }}/.config/fish/config.fish:
+{{ salt['pillar.get']('user:path') }}/.config/fish/config.fish:
   file.managed:
     - source: salt://fish/config.fish
-    - user: {{ pillar['username'] }}
+    - user: {{ salt['pillar.get']('user:name') }}
     - group: staff
     - mode: 644
     - makedirs: True
-    - dir_mode: 755 
+    - dir_mode: 755
     - require:
       - cmd: oh-my-fish

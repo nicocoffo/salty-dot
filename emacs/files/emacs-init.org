@@ -37,7 +37,7 @@
   and a keymap and removes that binding. Invoking
   =describe-personal-keybindings= prints a summary of your keybindings
   through =bind-key= and any overrides or conflicts. This is really
-  the killer convenience of using =bind-key=.
+  THE killer convenience of using =bind-key=.
 
 * =evil=
   Here we have our first package with dependencies. Historically, I've had
@@ -82,7 +82,7 @@
 
    #+BEGIN_SRC emacs-lisp
      (req-package evil-leader
-                  :require (evil evil-nerd-commenter smex)
+                  :require (evil evil-nerd-commenter smex function-args)
                   :ensure evil-leader
                   :init
                   (progn
@@ -98,7 +98,7 @@
                       "v" 'split-window-right
                       "k" 'kill-buffer
                       "K" 'kill-buffer-and-window
-                      "f" 'dired
+                      "f" 'ido-find-file
                       "c" 'evilnc-comment-or-uncomment-lines
                       "x" 'smex
                       "gs" 'magit-status)
@@ -201,13 +201,10 @@
    #+END_SRC
 
 ** Theme
-   I've switched entirely to dark themes to make working with
-   Structured Haskell Mode easier.
+   I like having the same colours in both terminal and emacs, so I define some selection of base16
+   colours in iterm and configure various things in emacs, based on the 16 terminal colours.
 
-   I also advise =load-theme= to fully unload the previous theme
-   before loading a new one.
-
-   #+BEGIN_SRC emacs-lisp :tangle no
+   #+BEGIN_SRC emacs-lisp
      (defadvice load-theme
        (before theme-dont-propagate activate)
        (mapc #'disable-theme custom-enabled-themes))
@@ -215,19 +212,28 @@
      (load-theme 'base16-terminal :no-confirm)
    #+END_SRC
 
+** Powerline
+   My horrible attempt at powerline in terminal emacs. A weird merge of [[https://github.com/raugturi/powerline-evil][powerline-evil]] and [[https://github.com/unic0rn/powerline][utf-8 powerline]]
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'load-path "~/.emacs.d/powerline")
+     (require 'powerline)
+     (powerline-evil-vim-color-theme)
+   #+END_SRC
+
 ** Faces
-   #+BEGIN_SRC emacs-lisp :tangle no
+   #+BEGIN_SRC emacs-lisp
      (req-package faces
                   :config
                   (progn
-                    (set-face-attribute 'default nil :family "Sauce Code Powerline")
+                    (set-face-attribute 'default nil :family "Source Code Pro")
                     (set-face-attribute 'default nil :height 100)))
    #+END_SRC
 
 ** Cleanup
    Who wants all that toolbars and scrollbars noise?
 
-   #+BEGIN_SRC emacs-lisp :tangle no
+   #+BEGIN_SRC emacs-lisp
      (req-package scroll-bar
                   :config
                   (scroll-bar-mode -1))
@@ -412,6 +418,13 @@
    #+END_SRC
 
 * Languages
+** C
+   #+BEGIN_SRC emacs-lisp
+     (setq-default c-basic-offset 4)
+     (setq-default c-default-style "linux")
+     (add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
+   #+END_SRC
+
 ** YAML
    #+BEGIN_SRC emacs-lisp
      (req-package yaml-mode

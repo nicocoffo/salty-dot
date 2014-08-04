@@ -34,7 +34,8 @@ COLOR1 and COLOR2 must be supplied as hex strings with a leading #."
 
 (defun pl/hex-color (color)
   "Get the hexadecimal value of COLOR."
-  (apply 'color-rgb-to-hex (color-name-to-rgb color)))
+  (when color
+    (apply 'color-rgb-to-hex (color-name-to-rgb color))))
 
 (defun pl/pattern (lst)
   "Turn LST into an infinite pattern."
@@ -103,14 +104,14 @@ destination color, and 2 is the interpolated color between 0 and 1."
   (let* ((src-face (if (eq dir 'left) 'face1 'face2))
          (dst-face (if (eq dir 'left) 'face2 'face1)))
     `(defun ,(intern (format "powerline-%s-%s" name (symbol-name dir)))
-       (face1 face2 &optional height)
+         (face1 face2 &optional height)
        (when window-system
          (unless height
            (setq height (pl/separator-height)))
          (let* ,(append `((color1 (when ,src-face
-                                    (pl/hex-color (face-attribute ,src-face :background))))
+                                    (pl/hex-color (face-background ,src-face))))
                           (color2 (when ,dst-face
-                                    (pl/hex-color (face-attribute ,dst-face :background))))
+                                    (pl/hex-color (face-background ,dst-face))))
                           (colori (when (and color1 color2) (pl/interpolate color1 color2)))
                           (color1 (or color1 "None"))
                           (color2 (or color2 "None"))
@@ -310,9 +311,12 @@ destination color, and 2 is the interpolated color between 0 and 1."
 (defmacro pl/nil (dir)
   "Generate a XPM function that returns nil for DIR."
   `(defun ,(intern (format "powerline-nil-%s" (symbol-name dir)))
-     (face1 face2 &optional height)
+       (face1 face2 &optional height)
      nil))
 
+(defun powerline-utf-8-right (f1 f2 &optional height) (powerline-raw (char-to-string powerline-utf-8-separator-right) (list :foreground (face-attribute f2 :background) :background (face-attribute f1 :background))))
+
+(defun powerline-utf-8-left (f1 f2 &optional height) (powerline-raw (char-to-string powerline-utf-8-separator-left) (list :foreground (face-attribute f1 :background) :background (face-attribute f2 :background))))
 
 (provide 'powerline-separators)
 
