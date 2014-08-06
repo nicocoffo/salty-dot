@@ -1,3 +1,6 @@
+fish:
+  pkg.installed
+
 fish-shells:
   cmd.run:
     - name: echo '/usr/local/bin/fish' | tee -a /etc/shells

@@ -6,7 +6,6 @@ cask:
   - pupil
 
 brew:
-  - fish:
   - coreutils:
   - moreutils:
   - findutils:
