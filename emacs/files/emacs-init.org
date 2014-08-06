@@ -100,6 +100,8 @@
                       "K" 'kill-buffer-and-window
                       "f" 'ido-find-file
                       "c" 'evilnc-comment-or-uncomment-lines
+                      "n" 'flycheck-next-error
+                      "p" 'flycheck-previous-error
                       "x" 'smex
                       "gs" 'magit-status)
                     (evil-leader/set-key-for-mode 'haskell-mode
@@ -228,6 +230,14 @@
                   (progn
                     (set-face-attribute 'default nil :family "Source Code Pro")
                     (set-face-attribute 'default nil :height 100)))
+   #+END_SRC
+
+** 80+ Lines
+   Uni really doesn't like 80+ lines
+
+   #+BEGIN_SRC emacs-lisp
+     (req-package column-enforce-mode
+       :config (add-hook 'prog-mode-hook 'column-enforce-mode) )
    #+END_SRC
 
 ** Cleanup
@@ -422,7 +432,11 @@
    #+BEGIN_SRC emacs-lisp
      (setq-default c-basic-offset 4)
      (setq-default c-default-style "linux")
-     (add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
+     (defun c-indent-setup ()
+       (c-set-offset 'arglist-cont-nonempty '++)
+       (c-set-offset 'case-label '+))
+     (add-hook 'c-mode-hook 'c-indent-setup)
+     (define-key evil-insert-state-map (kbd "RET") 'newline-and-indent)
    #+END_SRC
 
 ** YAML
