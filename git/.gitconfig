@@ -1,9 +1,10 @@
 [user]
-	name = Nicholas Coughlin
-	email = nicocoffo@gmail.com
+    name = Nicholas Coughlin
+    email = nicocoffo@gmail.com
 [core]
-	editor = emacs
+    editor = emacs
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
+    useHttpPath = true
 [push]
-	default = simple
+    default = simple

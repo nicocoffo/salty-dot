@@ -91,7 +91,8 @@
                     (evil-leader/set-key
                       "a" 'projectile-ag
                       "l" 'org-insert-link
-                      "o" 'other-window
+                      "q" '(lambda () (interactive) (other-window -1))
+                      "w" 'other-window
                       "d" 'delete-window
                       "D" 'delete-other-windows
                       "h" 'split-window-below
@@ -368,7 +369,7 @@
 
    #+BEGIN_SRC emacs-lisp
      (setq-default indent-tabs-mode nil)
-     (setq tab-width 2) ; or any other preferred value
+     (setq-default tab-width 2) ; or any other preferred value
    #+END_SRC
 
 ** UTF8
