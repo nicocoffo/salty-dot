@@ -5,6 +5,5 @@
     editor = emacs
 [credential]
     helper = osxkeychain
-    useHttpPath = true
 [push]
     default = simple
